@@ -1,12 +1,28 @@
 {
   "version": 0,
   "environment": "development",
-  "networks": ["rinkeby", "goerli", "kovan", "evmostestnet"],
+  "networks": [
+    "rinkeby",
+    "goerli",
+    "kovan",
+    "evmostestnet"
+  ],
   "rpcs": {
-    "rinkeby": ["https://rinkeby-light.eth.linkpool.io"],
-    "goerli": ["https://goerli-light.eth.linkpool.io"],
-    "kovan": ["https://kovan.poa.network"],
-    "evmostestnet": ["https://eth.bd.evmos.dev:8545"]
+    "rinkeby": [
+      "https://rinkeby-light.eth.linkpool.io"
+    ],
+    "goerli": [
+      "https://goerli-light.eth.linkpool.io"
+    ],
+    "kovan": [
+      "https://kovan.poa.network"
+    ],
+    "evmostestnet": [
+      "https://eth.bd.evmos.dev:8545"
+    ],
+    "neon": [
+      "https://proxy.devnet.neonlabs.org/solana"
+    ]
   },
   "protocol": {
     "governor": {
@@ -14,17 +30,64 @@
       "id": "0xa4849f1d96b26066f9c631fcdc8f1457d27fb5ec"
     },
     "networks": {
+      "neon": {
+        "name": "Neon",
+        "rpc": "https://proxy.devnet.neonlabs.org/solana",
+        "domain": 245022934,
+        "connections": [
+          "rinkeby",
+          "kovan",
+          "goerli",
+          "evmostestnet"
+        ],
+        "specs": {
+          "chainId": 245022934,
+          "blockTime": 1,
+          "finalizationBlocks": 32,
+          "supports1559": false,
+          "confirmations": 10,
+          "blockExplorer": "https://neonscan.org/",
+          "indexPageSize": 2000
+        },
+        "configuration": {
+          "optimisticSeconds": 1800,
+          "processGas": 850000,
+          "reserveGas": 25000,
+          "maximumGas": 1000000,
+          "governance": {
+            "recoveryManager": "0xa4849f1d96b26066f9c631fcdc8f1457d27fb5ec",
+            "recoveryTimelock": 180
+          },
+          "updater": "0xA4e6e0953443882F448B93dE52ABFe7eb8b2efd4",
+          "watchers": [
+            "0xdc030a4e198dD6d08A7497B3DEAf644AD755C10b"
+          ]
+        },
+        "bridgeConfiguration": {
+          "weth": "TEMPLATE",
+          "customs": [],
+          "mintGas": 20000,
+          "deployGas": 850000
+        }
+      },
       "rinkeby": {
         "name": "rinkeby",
         "domain": 1001,
-        "connections": ["goerli", "kovan", "evmostestnet"],
+        "connections": [
+          "goerli",
+          "kovan",
+          "evmostestnet",
+          "neon"
+        ],
         "configuration": {
           "optimisticSeconds": 10,
           "processGas": 850000,
           "reserveGas": 15000,
           "maximumGas": 1000000,
           "updater": "0xe80d5d65275208aee8e10609258e4e048eb86b4c",
-          "watchers": ["0x8ad65ba028cae9e3932959d5c167a09ede941d2c"],
+          "watchers": [
+            "0x8ad65ba028cae9e3932959d5c167a09ede941d2c"
+          ],
           "governance": {
             "recoveryManager": "0xa4849f1d96b26066f9c631fcdc8f1457d27fb5ec",
             "recoveryTimelock": 180
@@ -49,14 +112,21 @@
       "goerli": {
         "name": "goerli",
         "domain": 3001,
-        "connections": ["rinkeby", "kovan", "evmostestnet"],
+        "connections": [
+          "rinkeby",
+          "kovan",
+          "evmostestnet",
+          "neon"
+        ],
         "configuration": {
           "optimisticSeconds": 10,
           "processGas": 850000,
           "reserveGas": 15000,
           "maximumGas": 1000000,
           "updater": "0xd16bdbbc56090156ec609ebebc8bace1240fa22e",
-          "watchers": ["0x69520f1cec6199fe93c6c77881b5de701e0efeff"],
+          "watchers": [
+            "0x69520f1cec6199fe93c6c77881b5de701e0efeff"
+          ],
           "governance": {
             "recoveryManager": "0xa4849f1d96b26066f9c631fcdc8f1457d27fb5ec",
             "recoveryTimelock": 180
@@ -81,14 +151,21 @@
       "kovan": {
         "name": "kovan",
         "domain": 2001,
-        "connections": ["rinkeby", "goerli", "evmostestnet"],
+        "connections": [
+          "rinkeby",
+          "goerli",
+          "evmostestnet",
+          "neon"
+        ],
         "configuration": {
           "optimisticSeconds": 10,
           "processGas": 850000,
           "reserveGas": 15000,
           "maximumGas": 1000000,
           "updater": "0x45818549c1e7d16c915fe23c1524b524507a184b",
-          "watchers": ["0xe8c6bf61d5f5744f465865772e1de88059267bac"],
+          "watchers": [
+            "0xe8c6bf61d5f5744f465865772e1de88059267bac"
+          ],
           "governance": {
             "recoveryManager": "0xa4849f1d96b26066f9c631fcdc8f1457d27fb5ec",
             "recoveryTimelock": 180
@@ -113,14 +190,21 @@
       "evmostestnet": {
         "name": "evmostestnet",
         "domain": 4001,
-        "connections": ["goerli", "rinkeby", "kovan"],
+        "connections": [
+          "goerli",
+          "rinkeby",
+          "kovan",
+          "neon"
+        ],
         "configuration": {
           "optimisticSeconds": 10,
           "processGas": 850000,
           "reserveGas": 15000,
           "maximumGas": 1000000,
           "updater": "0x815d2281a9ebacfbffa4294375de6e14f2522d87",
-          "watchers": ["0xafcf8db79e999cb79260572fb61c8e5006b855a4"],
+          "watchers": [
+            "0xafcf8db79e999cb79260572fb61c8e5006b855a4"
+          ],
           "governance": {
             "recoveryManager": "0xa4849f1d96b26066f9c631fcdc8f1457d27fb5ec",
             "recoveryTimelock": 180
@@ -381,7 +465,11 @@
         "indexOnly": false,
         "allowed": null,
         "denied": null,
-        "subsidizedRemotes": ["kovan", "goerli", "evmostestnet"],
+        "subsidizedRemotes": [
+          "kovan",
+          "goerli",
+          "evmostestnet"
+        ],
         "s3": {
           "bucket": "nomadxyz-development-proofs",
           "region": "us-west-2"
@@ -421,7 +509,11 @@
         "indexOnly": false,
         "allowed": null,
         "denied": null,
-        "subsidizedRemotes": ["rinkeby", "kovan", "evmostestnet"],
+        "subsidizedRemotes": [
+          "rinkeby",
+          "kovan",
+          "evmostestnet"
+        ],
         "s3": {
           "bucket": "nomadxyz-development-proofs",
           "region": "us-west-2"
@@ -461,7 +553,11 @@
         "indexOnly": false,
         "allowed": null,
         "denied": null,
-        "subsidizedRemotes": ["rinkeby", "goerli", "evmostestnet"],
+        "subsidizedRemotes": [
+          "rinkeby",
+          "goerli",
+          "evmostestnet"
+        ],
         "s3": {
           "bucket": "nomadxyz-development-proofs",
           "region": "us-west-2"
@@ -500,7 +596,11 @@
       "processor": {
         "allowed": null,
         "denied": null,
-        "subsidizedRemotes": ["rinkeby", "kovan", "goerli"],
+        "subsidizedRemotes": [
+          "rinkeby",
+          "kovan",
+          "goerli"
+        ],
         "s3": {
           "bucket": "nomadxyz-development-proofs",
           "region": "us-west-2"
@@ -667,26 +767,37 @@
     "kovan": {
       "displayName": "Kovan",
       "nativeTokenSymbol": "kETH",
-      "connections": ["rinkeby"],
+      "connections": [
+        "rinkeby"
+      ],
       "connextEnabled": true
     },
     "goerli": {
       "displayName": "Goerli",
       "nativeTokenSymbol": "gETH",
-      "connections": ["rinkeby"],
+      "connections": [
+        "rinkeby"
+      ],
       "connextEnabled": true
     },
     "rinkeby": {
       "displayName": "Rinkeby",
       "nativeTokenSymbol": "rETH",
-      "connections": ["kovan", "goerli", "evmostestnet"],
+      "connections": [
+        "kovan",
+        "goerli",
+        "evmostestnet",
+        "neon"
+      ],
       "manualProcessing": true,
       "connextEnabled": true
     },
     "evmostestnet": {
       "displayName": "Evmos Testnet",
       "nativeTokenSymbol": "tEVMOS",
-      "connections": ["rinkeby"],
+      "connections": [
+        "rinkeby"
+      ],
       "connextEnabled": false
     }
   }
