@@ -5,7 +5,8 @@
     "rinkeby",
     "goerli",
     "kovan",
-    "evmostestnet"
+    "evmostestnet",
+    "neon"
   ],
   "rpcs": {
     "rinkeby": [
@@ -64,7 +65,7 @@
           ]
         },
         "bridgeConfiguration": {
-          "weth": "TEMPLATE",
+          "weth": "0xf8ad328e98f85fccbf09e43b16dcbbda7e84beab",
           "customs": [],
           "mintGas": 20000,
           "deployGas": 850000
