@@ -7,7 +7,10 @@
     "avalanche",
     "evmos",
     "milkomedaC1",
-    "moonbeam"
+    "moonbeam",
+    "optimism",
+    "arbitrum",
+    "harmony"
   ],
   "s3": {
     "bucket": "nomadxyz-production-proofs",
@@ -19,7 +22,10 @@
     "moonbeam": ["https://moonriver.api.onfinality.io/public"],
     "milkomedaC1": ["https://rpc.c1.milkomeda.com:8545"],
     "xdai": ["https://dai.poa.network/"],
-    "avalanche": ["https://api.avax.network/ext/bc/C/rpc"]
+    "avalanche": ["https://api.avax.network/ext/bc/C/rpc"],
+    "optimism": ["https://opt-mainnet.g.alchemy.com/v2/GrfuUkGYiTpD6mUhYrPW79SarxYbTnYL"],
+    "arbitrum": ["https://arb-mainnet.g.alchemy.com/v2/RwdK_GHt5oGT7WkGUn2AQJrCXsrEpGjD"],
+    "harmony": ["https://harmony-mainnet.chainstacklabs.com"]
   },
   "protocol": {
     "governor": {
@@ -27,10 +33,76 @@
       "id": "0x93277b8f5939975b9e6694d5fd2837143afbf68a"
     },
     "networks": {
+      "optimism": {
+      "name": "optimism",
+      "rpc": "https://opt-mainnet.g.alchemy.com/v2/GrfuUkGYiTpD6mUhYrPW79SarxYbTnYL",
+      "domain": 7303284,
+      "connections": ["arbitrum", "avalanche", "harmony", "moonbeam", "ethereum", "milkomedaC1", "xdai", "evmos"],
+      "specs": {
+        "chainId": 10,
+        "blockTime": 1,
+        "finalizationBlocks": 1,
+        "supports1559": false,
+        "confirmations": 1,
+        "blockExplorer": "https://optimistic.etherscan.io/",
+        "indexPageSize": 2000
+      },
+      "configuration": {
+        "optimisticSeconds": 1800,
+        "processGas": 850000,
+        "reserveGas": 25000,
+        "maximumGas": 1000000,
+        "governance": {
+          "recoveryManager": "<TEMPLATE>",
+          "recoveryTimelock": 86400
+        },
+        "updater": "0xDf2617dD2a9A6122B4c8098dF81333AdD2EfC797",
+        "watchers": ["0xF8Ef453caa7FD27B52db8D9184c37DB88984CfA9"]
+      },
+      "bridgeConfiguration": {
+        "weth": "0x4200000000000000000000000000000000000006",
+        "customs": [],
+        "mintGas": 200000,
+        "deployGas": 850000
+      }
+    },
+      "arbitrum": {
+      "name": "arbitrum",
+      "rpc": "https://arb-mainnet.g.alchemy.com/v2/RwdK_GHt5oGT7WkGUn2AQJrCXsrEpGjD",
+      "domain": 6386274,
+      "connections": ["optimism", "avalanche", "harmony", "moonbeam", "ethereum", "milkomedaC1", "xdai", "evmos"],
+      "specs": {
+        "chainId": 42161,
+        "blockTime": 1,
+        "finalizationBlocks": 1,
+        "supports1559": false,
+        "confirmations": 1,
+        "blockExplorer": "https://arbiscan.io/",
+        "indexPageSize": 2000
+      },
+      "configuration": {
+        "optimisticSeconds": 1800,
+        "processGas": 850000,
+        "reserveGas": 25000,
+        "maximumGas": 1000000,
+        "governance": {
+          "recoveryManager": "<TEMPLATE>",
+          "recoveryTimelock": 86400
+        },
+        "updater": "0x7eB6aEE9875d32Cf8a12C01fA951302B192C20A8",
+        "watchers": ["0xd5084275511450b5036FCB14E2bb5395Ed63f19D"]
+      },
+      "bridgeConfiguration": {
+        "weth": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+        "customs": [],
+        "mintGas": 200000,
+        "deployGas": 850000
+      }
+    },
       "avalanche": {
         "name": "avalanche",
         "domain": 1635148152,
-        "connections": ["moonbeam", "ethereum", "milkomedaC1", "xdai", "evmos"],
+        "connections": ["arbitrum", "optimism", "harmony", "moonbeam", "ethereum", "milkomedaC1", "xdai", "evmos"],
         "configuration": {
           "optimisticSeconds": 1800,
           "processGas": 850000,
@@ -59,6 +131,47 @@
           "deployGas": 850000
         }
       },
+      "harmony": {
+        "name": "harmony",
+        "domain": 1751216749,
+        "connections": [
+          "moonbeam",
+          "avalanche",
+          "evmos",
+          "ethereum",
+          "milkomedaC1",
+          "optimism",
+          "harmony",
+          "arbitrum"
+        ],
+        "configuration": {
+          "optimisticSeconds": 1800,
+          "processGas": 850000,
+          "reserveGas": 25000,
+          "maximumGas": 1000000,
+          "updater": "",
+          "watchers": [""],
+          "governance": {
+            "recoveryManager": "",
+            "recoveryTimelock": 86400
+          }
+        },
+        "specs": {
+          "chainId": 100,
+          "blockTime": 5,
+          "finalizationBlocks": 3,
+          "supports1559": true,
+          "confirmations": 5,
+          "blockExplorer": "https://explorer.harmony.one/",
+          "indexPageSize": 2000
+        },
+        "bridgeConfiguration": {
+          "weth": "https://explorer.harmony.one/",
+          "customs": [],
+          "mintGas": 200000,
+          "deployGas": 850000
+        }
+      },
       "xdai": {
         "name": "xdai",
         "domain": 2019844457,
@@ -67,7 +180,10 @@
           "avalanche",
           "evmos",
           "ethereum",
-          "milkomedaC1"
+          "milkomedaC1",
+          "optimism",
+          "harmony",
+          "arbitrum"
         ],
         "configuration": {
           "optimisticSeconds": 1800,
@@ -105,7 +221,10 @@
           "avalanche",
           "ethereum",
           "evmos",
-          "milkomedaC1"
+          "milkomedaC1",
+          "optimism",
+          "harmony",
+          "arbitrum"
         ],
         "configuration": {
           "optimisticSeconds": 1800,
@@ -143,7 +262,10 @@
           "evmos",
           "moonbeam",
           "milkomedaC1",
-          "avalanche"
+          "avalanche",
+          "optimism",
+          "harmony",
+          "arbitrum"
         ],
         "configuration": {
           "optimisticSeconds": 1800,
@@ -181,7 +303,10 @@
           "ethereum",
           "milkomedaC1",
           "avalanche",
-          "moonbeam"
+          "moonbeam",
+          "optimism",
+          "harmony",
+          "arbitrum"
         ],
         "configuration": {
           "optimisticSeconds": 1800,
